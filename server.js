@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 require('dotenv').config();
 const petProfileRoutes = require('./routes/petProfileRoutes');
-
+const breedRoutes = require('./routes/breedRoutes');
 
 
 // Initialize Express app
@@ -29,6 +29,7 @@ mongoose
 //     }
 // )
 app.use('/api', petProfileRoutes);
+app.use('/api/breeds', breedRoutes);
 
 // Start the server
 const PORT = process.env.PORT || 5000;
