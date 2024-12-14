@@ -31,7 +31,7 @@ const ownerSchema = new mongoose.Schema({
       weight: Number,
       gender: String,
       temperament: String,
-      medicalHistory: String,
+      medicalHistory: [String],
       activities: String,
       photo: String,
     },
