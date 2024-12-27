@@ -20,7 +20,7 @@ router.post('/register', registerOwner);
 router.post('/login', loginOwner);
 
 // Get owner profile with pets (protected)
-router.get('/profile', authenticateToken, getOwnerProfile);
+router.get('/profile',  getOwnerProfile);
 
 // Update owner profile or pets (protected)
 router.put('/profile/update', authenticateToken, updateOwnerProfile);

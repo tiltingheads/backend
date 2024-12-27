@@ -58,11 +58,27 @@ const loginOwner = async (req, res) => {
 // Get owner profile with pets
 const getOwnerProfile = async (req, res) => {
   try {
-    const owner = await Owner.findById(req.user.id);
-    if (!owner) {
-      return res.status(404).json({ message: 'Owner not found' });
+    if (!req.user || !req.user.id) {
+      return res.status(400).json({ message: 'Invalid or missing token' });
     }
-    res.json(owner);
+
+    let profile;
+
+    // Admins fetch all profiles or their own
+    if (req.user.role === 'admin') {
+      profile = await Admin.findById(req.user.id);
+      if (!profile) {
+        return res.status(404).json({ message: 'Admin profile not found' });
+      }
+    } else {
+      // Regular owners fetch their own profile
+      profile = await Owner.findById(req.user.id);
+      if (!profile) {
+        return res.status(404).json({ message: 'Owner not found' });
+      }
+    }
+
+    res.json(profile);
   } catch (error) {
     console.error('Error fetching profile:', error);
     res.status(500).json({ message: 'Error fetching profile', error });
