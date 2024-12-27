@@ -57,10 +57,9 @@ const loginOwner = async (req, res) => {
 
 // Get owner profile with pets
 const getOwnerProfile = async (req, res) => {
+  console.log('Fetching owner profile:', req.user);
   try {
-    if (!req.user || !req.user.id) {
-      return res.status(400).json({ message: 'Invalid or missing token' });
-    }
+    
 
     let profile;
 
