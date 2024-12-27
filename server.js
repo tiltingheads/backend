@@ -10,7 +10,7 @@ const adminRoutes = require('./routes/adminRoutes');
 const app = express();
 app.use(express.json());
 
-  app.use(cors());
+ app.use(cors());
 
 // MongoDB connection
 mongoose
